@@ -270,6 +270,7 @@ pub struct StatusLineConfig {
     pub center: Vec<StatusLineElement>,
     pub right: Vec<StatusLineElement>,
     pub separator: String,
+    pub position_format: String,
     pub mode: ModeConfig,
 }
 
@@ -282,6 +283,7 @@ impl Default for StatusLineConfig {
             center: vec![],
             right: vec![E::Diagnostics, E::Selections, E::Position, E::FileEncoding],
             separator: String::from("│"),
+            position_format: String::from("{row}:{col}"),
             mode: ModeConfig::default(),
         }
     }
@@ -340,6 +342,10 @@ pub enum StatusLineElement {
 
     /// The cursor position
     Position,
+
+    /// The row and col elements of the cursor position
+    CursorRow,
+    CursorCol,
 
     /// The separator string
     Separator,
